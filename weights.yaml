@@ -1,0 +1,9 @@
+files:
+  - repo: arena-rosnav/rlrvo
+    filename: pre_train_check_point_1000.pt
+    dest: model/pre_train_check_point_1000.pt
+    sha256: 6cd4f586878a51218f1630def892357ad40126fd675b2b093dd03b830edd0268
+  - repo: arena-rosnav/rlrvo
+    filename: pre_train_args
+    dest: model/pre_train_args
+    sha256: 0b7924db59b61a5a49941dcd9a8ef9d229e703e5fae0480bb3111db079a24f40

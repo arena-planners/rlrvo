@@ -1,0 +1,22 @@
+[project]
+name = "arena_planners_rlrvo"
+version = "0.0.0"
+description = "rl_rvo_nav adapter for arena_planners bridge."
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "arena_planners",
+    "torch>=1.13.0,<2.4",
+    "numpy<2",
+    "gym==0.23.1",
+    "pyyaml",
+]
+
+[tool.uv.sources]
+arena_planners = { git = "https://github.com/arena-planners/arena_planners.git", branch = "jazzy", subdirectory = "arena_planners" }
+
+[tool.setuptools]
+packages = []
+py-modules = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["policy_rnn_ac"]
