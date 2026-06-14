@@ -139,7 +139,9 @@ def step(features: dict) -> list[float]:
 
     propri_obs = np.array([vx, vy, des_vx, des_vy, theta, _RADIUS], dtype=np.float32)
 
-    peds = features.get("pedestrians") or []
+    peds = features.get("pedestrians")
+    if peds is None:
+        peds = []
     vo_entries: list[list[float]] = []
     for ped in peds:
         mx = float(ped[1])
