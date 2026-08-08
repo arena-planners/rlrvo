@@ -8,7 +8,6 @@ import pathlib
 import numpy as np
 import torch
 import torch.nn as nn
-from arena_planners.geometry import lookahead_on_path
 from arena_planners.sdk import load_manifest, main_loop
 from gym.spaces import Box
 
@@ -26,7 +25,6 @@ _RNN_MODE: str = "biGRU"
 _V_PREF: float = 1.0
 _RADIUS: float = 0.3
 _PED_RADIUS: float = 0.3
-_LOOKAHEAD: float = 2.0
 _CTIME_THRESHOLD: float = 5.0
 _ACCELER_VEL: float = 1.0
 
@@ -120,12 +118,9 @@ def step(features: dict) -> list[float]:
     vx = float(robot_state[2]) if len(robot_state) > 3 else 0.0
     vy = float(robot_state[3]) if len(robot_state) > 3 else 0.0
 
-    global_plan = features.get("global_plan")
     goal_pose = features.get("goal_pose")
     target: tuple[float, float] | None = None
-    if global_plan is not None and len(global_plan) > 0:
-        target = lookahead_on_path(global_plan, robot_pose, lookahead=_LOOKAHEAD)
-    if target is None and goal_pose is not None and len(goal_pose) >= 2:
+    if goal_pose is not None and len(goal_pose) >= 2:
         target = (float(goal_pose[0]), float(goal_pose[1]))
     if target is None:
         return [0.0, 0.0]
