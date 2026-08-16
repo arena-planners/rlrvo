@@ -5,7 +5,7 @@ Arena wrapper for **rl_rvo_nav**, a GRU-based actor-critic policy trained with R
 ## Run
 
 ```sh
-arena launch mobile:=drl mobile.planner:=rlrvo
+arena launch robot.mobile:=drl robot.mobile.planner:=rlrvo
 ```
 
 Requires a global plan. Defaults to `nav2/navfn`.
